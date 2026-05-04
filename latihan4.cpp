@@ -3,6 +3,11 @@
 
 using namespace std;
 
+struct siswa{
+    string nama;
+    double nilai;
+};
+
 void cekStatus(double nilai=0){
     if(nilai >=70){
         cout<<"lulus"<<endl;
@@ -47,7 +52,6 @@ int main(){
                 cout<<i+1<<". "<<daftarNama[i]<<"\t: "<<daftarNilai[i]<<"\t";
                 cekStatus(daftarNilai[i]);
             }
-        
     
         cout<<"\n=== status kelulusan siswa ==="<<endl;
 
