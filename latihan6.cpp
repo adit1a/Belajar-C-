@@ -33,7 +33,7 @@ int main (){
     int totalSkorTim=0;
     int indexMVP=0;
    
-    hasil();
+    
     cout<<"=== valorant track sederhana===== \n";
      
 

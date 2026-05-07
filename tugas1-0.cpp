@@ -41,9 +41,6 @@ int main ()
     <<setw(10)<<"harga"
     <<setw(5)<<"total nilai"<<endl;
 
-    
-    
-
     long modal = 0;
     for(int k=0; k<jenisBarang; k++){
         long totalNilaiInventaris = barang[k].stok * barang[k].harga;
