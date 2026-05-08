@@ -25,7 +25,7 @@ string cekSenjata(int kode)
     case 3:
         return "Desert Eagle";
     default:
-        return "tidak ada bodoh";
+        return "salah";
     }
 }
 
@@ -43,7 +43,6 @@ void ketik(string teks, int jeda){
     }
     
 }
-
 int main(){
     srand(time(0));
     game pemain1;
@@ -55,12 +54,27 @@ int main(){
     getline(cin, pemain1.nama);
     Ketik("ok jadi nama kamu adalah " + pemain1.nama + " hhahah nama yang lucu", 10);
     Ketik("sekarang " + pemain1.nama + " kamu harus memilih senjata agar bertahan hidup", 10);
-    cout<<"di depan kamu ada 3 kotak silahkan pilih"<<endl;
+    cout<<"di depan kamu ada 5 kotak silahkan pilih"<<endl;
     cout<<" silahkan pilih :";
-    cin>>pemain1.senjata;
+    int pilihan;
+    cin>>pilihan;
+    if( pilihan < 1 || pilihan > 3){
+        Ketik("pilihan kamu tidak ada bodoh dan mati", 10);
+        return 0;
+    }
+
+    
+    
+    Ketik("Kamu membuka kotak nomor " + to_string(pilihan) + "...", 50);
+    pemain1.senjata=rand() % 3+1;
     string senjataPemain=cekSenjata(pemain1.senjata);
+    Ketik("Ternyata isinya adalah: " + senjataPemain + "!", 20);
     pemain1.musuh =rand () % 6;
-    if(senjataPemain == "pisau"  && pemain1.musuh <= 1){
+    if(senjataPemain == "salah"){
+        Ketik("kamu salah pilih dan dibunuh game over bunng", 150);
+        return 0;
+    }
+    else if(senjataPemain == "pisau"  && pemain1.musuh <= 1){
        cout<<"kamu menang ya""\n";
     }else if(senjataPemain == "pisau"  && pemain1.musuh >= 2){
         cout<<"kamu mati \n";
@@ -69,7 +83,7 @@ int main(){
     else if(senjataPemain == "pistol" && pemain1.musuh <= 4){
         cout<<"kamu menangg  selamat""\n";
     }
-    else if(senjataPemain == "Desert Eagel" && pemain1.musuh <= 6){
+    else if(senjataPemain == "Desert Eagle" && pemain1.musuh <= 6){
         cout<<"kamu menang"<<endl;
     }else{
         cout<< "kamu kalah "<<endl;
