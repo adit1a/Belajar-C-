@@ -45,7 +45,7 @@ int main()
     
 
     cout<<"ringkasan belanja"<<endl;
-    cout<<"Nama : "<<barang1.nama<< "| nama 2: "<<barang2.nama<<endl;
+    cout<<"Nama 1 : "<<barang1.nama<< "| nama 2: "<<barang2.nama<<endl;
     cout<<"Harga : Rp "<<barang1.harga<<endl;
     cout<<"Kategori : "<<hasilKategori<<endl;
     return 0;
