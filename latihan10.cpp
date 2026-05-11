@@ -10,7 +10,8 @@ struct chest{
     int maxItem;
 };
 
-void chestInv(string &nama, int &item, int &maxItem, int &kode, int &jumlah){
+void chestInv(string &nama, int &item, int &maxItem, 
+    int &kode, int &jumlah){
     switch (kode)
     {
     case 1:
@@ -47,6 +48,7 @@ void cekInventory( int &jumlah, int &item){
     }else{
         cout<<"inventory cukup""\n";
     }
+
 }
 
 int main()
@@ -70,7 +72,7 @@ int main()
     cout<<"item = "<<item<<" dan inventory kurang berapa = "<< selisih <<endl;
 
     cout<<"selamat datang pengecekan chest"<<endl;
-    cout<<"silahkan masukkan barang = ";
+    cout<<"silahkan pilih dari 1 || 3 barang = ";
     cin>>kode;
     cout<<"silahkan masukkan jumalah barang = ";
     cin>>jumlah;

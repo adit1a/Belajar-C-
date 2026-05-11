@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <ctime>
+#include <windows.h>
 
 using namespace std;
 
@@ -7,6 +9,13 @@ struct kendaraan{
     string jenisKend;
     int waktuMasuk;
 };
+
+void ketik(string teks, int jeda){
+    for(int i=0; i<teks.length(); i++){
+        cout<<teks[i]<<flush;
+        Sleep(jeda);
+    }
+}
 
 void hitungParkir(kendaraan k, int waktuKeluar, int &totalBayar){
     int durasi =waktuKeluar - k.waktuMasuk;
@@ -22,9 +31,9 @@ int main()
 {
     kendaraan k1;
     int waktuKeluar, totalBayar=0;
-    cout<<"sistem parkir otomatis""\n";
+    ketik("sistem parkir otomatis""\n", 200);
     cout<<"=====================""\n";
-    cout<<"masukkan jenis kendaraan = ";
+    ketik("masukkan jenis kendaraan = ", 200);
     cin>>k1.jenisKend;
     cout<<"waktu masuk = ";
     cin>>k1.waktuMasuk;
