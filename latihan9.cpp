@@ -7,18 +7,26 @@ void cekTotal(int &total,int harga, int jumlah){
         total = harga * jumlah;    
 }
 
-string barang(int brg)
+void barang(int kode, string &nama, int &harga)
     {
-        switch (brg)
+        switch (kode)
         {
         case 1:
-            return "beras";
+            nama ="beras";
+            harga =12000;
+            break;
         case 2:
-            return  "gula";
+            nama ="telur";
+            harga =2000;
+            break;
         case 3:
-            return "telur";
+            nama ="gula";
+            harga =7000;
+            break;
         default:
-            return "barang tidak ada";
+            nama="tidak ada";
+            harga=0;
+            break;
         }
     }
 
@@ -26,7 +34,8 @@ int main()
 {
 
     int pilihan, jumlah, total =0;
-    int harga =12000;
+    int harga =0;
+    string nama;
 
     cout<<"selamat datang pemebeli"<<endl;
     cout<<"silahkan berbelanja"<<endl;
@@ -37,9 +46,10 @@ int main()
     cout<<"3. telur"<<endl;
     cout<<"silahkan pilih :";
     cin>>pilihan;
-    string nama=barang(pilihan);
-    if(nama == "barang tidak ada"){
+    barang(pilihan, nama, harga);
+    if(nama == "tidak ada"){
         cout<<"tidak ada"<<endl;
+        return 0;
     }else{
         cout<<"kamu memilih "<<nama<<endl;
         cout<<"jumlah nya berapa :";
