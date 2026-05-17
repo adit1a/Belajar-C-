@@ -26,8 +26,8 @@ int main (){
     ketik("Sebelum semua jadi begini", 200);
     Ketik("Kini terlanjur,", 240);
     ketik(" kisah sudah tak sama", 250);
-    Ketik("Seperti ", 270);
-    ketik( "Kamu telah banyak berubah", 200 );
+    ketik("Seperti ", 300);
+    ketik( "Kamu telah banyak berubah", 240 );
     ketik( "Tak s'perti yang ku kenal dahulu, mm", 200 );
     
 
