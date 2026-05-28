@@ -23,10 +23,11 @@ int main(){
     garis();
     cout<<"masukkan angka = ";
     cin>>nilai;
-    kata("proses menghitung...", 500);
-    kata("sabar...", 500);
-    kata("proses berhasil...", 700);
-    cout<<"hasil = "<<nilai+nilai<<endl;
+    kata("proses hacking.......", 200);
+    kata("sabar...", 300);
+    kata("universitas hackk......", 300);
+    kata("elon musk hackk......", 300);
+    kata("hasil = " + to_string(nilai + nilai), 300);
     return 0;
 
 }
