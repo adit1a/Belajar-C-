@@ -74,7 +74,6 @@ int main()
     cout<<"jam kerja kamu adalah "<<jamKerja<<endl;
     cout<<"gaji lembur kamu adalah "<<gajiLembur<<endl;
     cout<<"gaji total kamu adalah "<<gajiTotal<<endl;
-
     return 0;
 }
 
