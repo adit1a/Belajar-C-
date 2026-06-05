@@ -1,0 +1,31 @@
+#include "raylib.h"
+
+int main() {
+    // 1. Membuat jendela game (Lebar: 800, Tinggi: 450)
+    InitWindow(800, 450, "Raylib - Hello World Adit");
+
+    // 2. Mengunci jalannya game di 60 FPS (biar tidak terlalu cepat)
+    SetTargetFPS(60);
+
+    // 3. Game Loop (Akan berputar terus selama jendela tidak ditutup)
+    while (!WindowShouldClose()) {
+        
+        // Tempat untuk menggambar semua objek visual game
+        BeginDrawing();
+
+        // Warnai latar belakang jendela jadi abu-abu muda
+        ClearBackground(LIGHTGRAY);
+
+        // Menampilkan teks "Hello World" di koordinat X: 190, Y: 200
+        // Ukuran font: 40, Warna teks: RED (Merah)
+        DrawText("Hello World", 190, 200, 40, RED);
+
+        // Selesai menggambar proses frame ini
+        EndDrawing();
+    }
+
+    // 4. Tutup jendela dan bersihkan memori grafik
+    CloseWindow();
+
+    return 0;
+}
