@@ -2,9 +2,16 @@
   "configurations": [
     {
       "name": "windows-gcc-x86",
+<<<<<<< HEAD
       "includePath": [
         "${workspaceFolder}/**"
       ],
+=======
+        "includePath": [
+            "${workspaceFolder}/**",
+            "C:/raylib/raylib/src/**"
+          ],
+>>>>>>> ee30a4dac74ecc64f787156edecdea07f0426ba6
       "compilerPath": "C:/MinGW/bin/gcc.exe",
       "cStandard": "${default}",
       "cppStandard": "${default}",

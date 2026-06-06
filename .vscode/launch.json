@@ -8,8 +8,13 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
+<<<<<<< HEAD
       "cwd": "d:/ngoding/c++/Raylib",
       "program": "d:/ngoding/c++/Raylib/build/Debug/outDebug",
+=======
+      "cwd": "c:/raylib/raylib/examples/core",
+      "program": "c:/raylib/raylib/examples/core/build/Debug/outDebug",
+>>>>>>> ee30a4dac74ecc64f787156edecdea07f0426ba6
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
