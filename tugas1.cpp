@@ -78,14 +78,14 @@ else if (tekanF) {
         DrawRectangleRec(tombolUpgrade, warnaTombol);
         
         // 4. Perbaikan: Trik matematika menaruh teks tepat di tengah tombol upgrade
-        string teksTombol = "TEMPA PEDANG (F)";
+        string teksTombol = "TAMBAH (F)";
         int lebarTeksTombol = MeasureText(teksTombol.c_str(), ukuranTeks);
         int posisiTeksX = tombolUpgrade.x + (tombolUpgrade.width / 2) - (lebarTeksTombol / 2);
         int posisiTeksY = tombolUpgrade.y + (tombolUpgrade.height / 2) - (ukuranTeks / 2);
         DrawText(teksTombol.c_str(), posisiTeksX, posisiTeksY, ukuranTeks, WHITE);
         
         //  5. tombol penambah bahan besi
-        string teksTombol2 = "TAMBAH BESI (SPACE)";
+        string teksTombol2 = "TEMPA PEDANG (SPACE)";
         int lebarTeksTombol2 = MeasureText(teksTombol2.c_str(), ukuranTeks);
         int posisiTeksX2 = tombolUpgrade.x + (tombolUpgrade.width / 2) - (lebarTeksTombol2 / 2);
         int posisiTeksY2 = tombolUpgrade.y + tombolUpgrade.height + 20; // Sedikit jarak di bawah tombol pertama
