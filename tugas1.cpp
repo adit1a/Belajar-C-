@@ -14,6 +14,7 @@ int main() {
 
     int levelSenjata = 1;
     int bahanBesi = 20;
+
     
     // Memuat font eksternal
     Font fontKeren = LoadFont("fonts/Inter-Bold.ttf");
@@ -30,18 +31,32 @@ int main() {
         bool mouseDiAtasTombol = CheckCollisionPointRec(mousePos, tombolUpgrade);
         
         // 2. Perbaikan: Definisikan apa itu tombolDitekan (Klik kiri mouse ATAU tombol F)
-        bool tombolDitekan = (mouseDiAtasTombol && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) || IsKeyPressed(KEY_F);
+       // 1. Definisikan aksi input keyboard
+bool tekanSpasi = IsKeyPressed(KEY_SPACE);
+bool tekanF     = IsKeyPressed(KEY_F);
+bool klikTombol = mouseDiAtasTombol && IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
 
-        // Jalankan logika menempamu yang sudah mantap tadi
-        if (tombolDitekan) {
-            if (bahanBesi >= 5) {
-                levelSenjata++;
-                bahanBesi -= 5;
-                pesanStatus = "Sukses! Pedang berhasil ditempa +1 Level.";
-            } else {
-                pesanStatus = "Gagal Menempa! Bahan Besi Tidak Cukup.";
-            }
-        }
+// 2. Jalankan logika berdasarkan aksi pemain
+if (klikTombol || tekanSpasi) { 
+    // AKSI 1: Menempa Pedang
+    if (bahanBesi >= 5) {
+        levelSenjata++;
+        bahanBesi -= 5;
+        pesanStatus = "Sukses! Pedang berhasil ditempa +1 Level.";
+    } else {
+        pesanStatus = "Gagal Menempa! Bahan Besi Tidak Cukup.";
+    }
+} 
+else if (tekanF) { 
+    // AKSI 2: Mengisi Ulang Besi (Hanya jika besi habis)
+    if (bahanBesi <= 0) {
+        bahanBesi += 20; // Langsung tambah banyak biar bisa tempa lagi
+        pesanStatus = "Bahan Besi berhasil ditambahkan!";
+    } else {
+        pesanStatus = "Besi masih ada, silakan tempa dulu!";
+    }
+}
+        
    
         // PROSES DRAWING
         BeginDrawing();
@@ -69,6 +84,12 @@ int main() {
         int posisiTeksY = tombolUpgrade.y + (tombolUpgrade.height / 2) - (ukuranTeks / 2);
         DrawText(teksTombol.c_str(), posisiTeksX, posisiTeksY, ukuranTeks, WHITE);
         
+        //  5. tombol penambah bahan besi
+        string teksTombol2 = "TAMBAH BESI (SPACE)";
+        int lebarTeksTombol2 = MeasureText(teksTombol2.c_str(), ukuranTeks);
+        int posisiTeksX2 = tombolUpgrade.x + (tombolUpgrade.width / 2) - (lebarTeksTombol2 / 2);
+        int posisiTeksY2 = tombolUpgrade.y + tombolUpgrade.height + 20; // Sedikit jarak di bawah tombol pertama
+        DrawText(teksTombol2.c_str(), posisiTeksX2, posisiTeksY2, ukuranTeks, BLUE);
         // Gambar Teks Status Pesan di bawah Panel (Biar kelihatan pas besinya habis)
         DrawText(pesanStatus.c_str(), 220, 160, 16, GOLD);
         
