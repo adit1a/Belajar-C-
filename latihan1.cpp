@@ -19,6 +19,9 @@ int main(){
     Rectangle tombol = { 396, 80, 200, 50 };
     int ukuranTeksTombol = 18;
 
+    Rectangle teksAdit= { 20, 20, 200, 50 };
+    int ukuranTeksAdit=18;
+
      SetTargetFPS(60);
 
     while (!WindowShouldClose()) {
@@ -29,7 +32,11 @@ int main(){
         DrawRectangleRec(kotakTengah, GetColor(0xFF6C5B7B)); 
         DrawRectangleLinesEx(kotakTengah, 4, GetColor(0xFFF67280)); 
         DrawText("Halo, Raylib!", kotakX + 20, kotakY + (tinggiKotak / 2) - (ukuranTeks / 2), ukuranTeks, BLACK);
-        
+        // =======
+         DrawRectangleRec(teksAdit, GetColor(0xFF6C5B7B)); 
+        DrawRectangleLinesEx(teksAdit, 4, GetColor(0xFFF67280)); 
+        DrawText("Teks Adit", teksAdit.x + 20, teksAdit.y + (teksAdit.height / 2) - (ukuranTeksAdit / 2), ukuranTeksAdit, GOLD);
+
         // 2. Gambar Kotak Kedua (Tombol Rounded)
         DrawRectangleRounded(tombol, 0.3f, 6, GetColor(0x38bdf8ff)); // Biru kustom
 
