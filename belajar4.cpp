@@ -7,6 +7,7 @@ struct toko{
     string namaBarang;
     int harga;
     int stok;
+    Rectangle areaKlik;
     Vector2 posisiTombol;
 };
 
@@ -50,7 +51,20 @@ int main()
         for(int i=0; i<3; i++){
             DrawRectangleRec(etalase[i].areaKlik, SKYBLUE);
             DrawRectangleLinesEx(etalase[i].areaKlik, 2, BLUE);
-        }
-    }
 
+            DrawText(etalase[i].namaBarang.c_str(), etalase[i].areaKlik.x + 15, etalase[i].areaKlik.y + 15, 18, BLACK);
+            DrawText(TextFormat("Rp %d", etalase[i].harga), etalase[i].areaKlik.x + 15, etalase[i].areaKlik.y + 40, 16, RAYWHITE);
+
+            DrawText(TextFormat("Stok: %d", etalase[i].stok), etalase[i].areaKlik.x, etalase[i].areaKlik.y - 20, 14, DARKGRAY);
+        }
+        DrawRectangle(0, 350, lebarL, 100, DARKGRAY);
+        DrawText("KERANJANG BELANJAAN:", 20, 365, 16, WHITE);
+        DrawText(TextFormat("Barang terakhir dimasukkan: %s", barangTerakhir.c_str()), 20, 395, 16, LIGHTGRAY);
+
+        DrawText(TextFormat("TOTAL: Rp %d", totalBelanja), 500, 380, 24, GREEN);
+
+        EndDrawing();
+    }
+        CloseWindow();
+        return 0; 
 }
