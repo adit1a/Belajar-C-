@@ -33,17 +33,16 @@ int main (){
         DrawRectangleRounded(areaTeks, 0.3f, 10, LIGHTGRAY);
         DrawRectangleRoundedLines(areaTeks, 0.3f, 10, GRAY);
         
-        // 3. Perbaikan: Menambahkan ukuran font dan warna BLACK di DrawText
+        
         int isiTeksY = areaTeks.y + (areaTeks.height / 2) - (ukuranTeks / 2);
         DrawText(isiTeks.c_str(), areaTeks.x + 10, isiTeksY, ukuranTeks, BLACK);
 
-        // 2. Perbaikan: 'color' diubah menjadi 'Color' kapital
+  
         Color tombolWarna = mouseAtas ? DARKBLUE : BLUE;
         DrawRectangleRounded(button, 0.3f, 10, tombolWarna);
 
         Color warnaTeks = mouseAtas ? YELLOW : WHITE;
 
-        // 5. Perbaikan: Sinkronisasi teks "silahkan klik" di MeasureText
         int lebarTeksTombol = MeasureText("silahkan klik", ukuranTeks);
         int teksX = button.x + (button.width / 2) - (lebarTeksTombol / 2);
         int teksY = button.y + (button.height / 2) - (ukuranTeks / 2);
