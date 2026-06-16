@@ -18,7 +18,7 @@ protected:
     int kecepatanAnimasi;
     float lebarFrame;
     float tinggiFrame;
-
+    float arahHadap;
 public:
     // CONSTRUCTOR: Load gambar langsung saat objek dibuat
     karakter(string namAwal, float x, float y, float speed, const char* pathGambar) {
@@ -30,7 +30,7 @@ public:
         spriteMC = LoadTexture(pathGambar); 
 
         // 2. Setup Matematika Potong Frame (Misal gambar hasil Figma kamu 308x128 px)
-        jumlahFrame = 4;
+        jumlahFrame = 5;
         lebarFrame = (float)spriteMC.width / jumlahFrame; // 308 / 4 = 77 px
         tinggiFrame = (float)spriteMC.height;            // 128 px
 
@@ -40,7 +40,8 @@ public:
         // Variabel waktu animasi
         frameAktif = 0;
         counterWaktu = 0;
-        kecepatanAnimasi = 10;
+        kecepatanAnimasi = 11;
+        arahHadap =1.0f;
     }
 
     // DESTRUCTOR: Otomatis hapus gambar dari VRAM saat game ditutup biar tidak bocor (leak)
@@ -55,10 +56,12 @@ public:
         if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D)) {
             posisi.x += kecepatan;
             sedangJalan = true;
+            arahHadap = 1.0f;
         }
         if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A)) {
             posisi.x -= kecepatan;
             sedangJalan = true;
+            arahHadap = -1.0f;
         }
 
         // --- LOGIKA UPDATE ANIMASI SPRITESHEET ---
@@ -76,8 +79,10 @@ public:
         } else {
             // Jika diam, kembalikan ke frame pertama
             frameAktif = 0;
-            sourceRec.x = 0.0f;
+            
         }
+        sourceRec.x = (float)frameAktif * lebarFrame;
+        sourceRec.width = lebarFrame * arahHadap;
     }
 
     void draw() {
@@ -95,7 +100,7 @@ int main() {
 
     // Pemanggilan di int main jadi rapi banget, Dit!
     // Cukup tambahkan alamat path filemu di parameter terakhir
-    karakter mc("Adit", 350.0f, 150.0f, 4.0f, "resources/mc3_jalan.png");
+    karakter mc("Adit", 350.0f, 150.0f, 4.0f, "resources/mc4_jalan.png");
 
     SetTargetFPS(60);
 
