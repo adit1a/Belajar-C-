@@ -7,16 +7,37 @@ class karakter{
     protected:
         string nama;
         Vector2 posisi;
+        bool lompat;
+        float kecepatanY;
         float kecepatan;
     public:
         karakter(string namAwal, float x, float y, float speed){
             nama =namAwal;
             posisi={x,y};
             kecepatan=speed;
+            kecepatanY=0.0f;
+            lompat=false;
+
         }
     void updateInput(){
+        float gravitasi=0.5f;
+        float posisiYTanah=350.0f;
+        float radiusLingkaran=40.0f;
+        
+        kecepatanY +=gravitasi;
+        posisi.y += kecepatanY;
+
+        if(posisi.y + radiusLingkaran >= posisiYTanah){
+            posisi.y=posisiYTanah-radiusLingkaran;
+            kecepatanY=0.0f;
+            lompat=false;
+        }
         if(IsKeyDown(KEY_RIGHT)||IsKeyDown(KEY_D)) posisi.x += kecepatan;
         if(IsKeyDown(KEY_LEFT)||IsKeyDown(KEY_A)) posisi.x -= kecepatan;
+        if(IsKeyPressed(KEY_SPACE)|| IsKeyPressed(KEY_W)&& !lompat){
+            kecepatanY = -12.0f;
+            lompat=true;
+        } 
 
     }
     void Draw(){
