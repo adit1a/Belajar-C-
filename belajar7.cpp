@@ -3,69 +3,114 @@
 
 using namespace std;
 
-class karakter{
-    protected:
-        string nama;
-        Vector2 posisi;
-        bool lompat;
-        float kecepatanY;
-        float kecepatan;
-    public:
-        karakter(string namAwal, float x, float y, float speed){
-            nama =namAwal;
-            posisi={x,y};
-            kecepatan=speed;
-            kecepatanY=0.0f;
-            lompat=false;
+class karakter {
+protected:
+    string nama;
+    Vector2 posisi;
+    float kecepatan;
+    
+    // --- TAMBAHAN VARIABEL UNTUK ANIMASI GAMBAR ---
+    Texture2D spriteMC;       // Tempat menyimpan file gambar (.png)
+    Rectangle sourceRec;      // Jendela intip untuk memotong per frame
+    int jumlahFrame;
+    int frameAktif;
+    int counterWaktu;
+    int kecepatanAnimasi;
+    float lebarFrame;
+    float tinggiFrame;
 
+public:
+    // CONSTRUCTOR: Load gambar langsung saat objek dibuat
+    karakter(string namAwal, float x, float y, float speed, const char* pathGambar) {
+        nama = namAwal;
+        posisi = { x, y };
+        kecepatan = speed;
+
+        // 1. Load File Gambar dari folder resources
+        spriteMC = LoadTexture(pathGambar); 
+
+        // 2. Setup Matematika Potong Frame (Misal gambar hasil Figma kamu 308x128 px)
+        jumlahFrame = 4;
+        lebarFrame = (float)spriteMC.width / jumlahFrame; // 308 / 4 = 77 px
+        tinggiFrame = (float)spriteMC.height;            // 128 px
+
+        // 3. Set Jendela Intip di awal (membaca frame ke-0)
+        sourceRec = { 0.0f, 0.0f, lebarFrame, tinggiFrame };
+
+        // Variabel waktu animasi
+        frameAktif = 0;
+        counterWaktu = 0;
+        kecepatanAnimasi = 10;
+    }
+
+    // DESTRUCTOR: Otomatis hapus gambar dari VRAM saat game ditutup biar tidak bocor (leak)
+    ~karakter() {
+        UnloadTexture(spriteMC);
+    }
+
+    void updateInput() {
+        bool sedangJalan = false;
+
+        // INPUT KONTROL jalan kanan-kiri
+        if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D)) {
+            posisi.x += kecepatan;
+            sedangJalan = true;
         }
-    void updateInput(){
-        float gravitasi=0.5f;
-        float posisiYTanah=350.0f;
-        float radiusLingkaran=40.0f;
+        if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A)) {
+            posisi.x -= kecepatan;
+            sedangJalan = true;
+        }
+
+        // --- LOGIKA UPDATE ANIMASI SPRITESHEET ---
+        if (sedangJalan) {
+            counterWaktu++;
+            if (counterWaktu >= (60 / kecepatanAnimasi)) {
+                counterWaktu = 0;
+                frameAktif++;
+
+                if (frameAktif >= jumlahFrame) frameAktif = 0;
+
+                // Geser koordinat X jendela intip (0*77px, 1*77px, dst)
+                sourceRec.x = (float)frameAktif * lebarFrame;
+            }
+        } else {
+            // Jika diam, kembalikan ke frame pertama
+            frameAktif = 0;
+            sourceRec.x = 0.0f;
+        }
+    }
+
+    void draw() {
+        // Menggambar Karakter memakai Gambar Texture, bukan lingkaran lagi!
+        // Fungsi: DrawTextureRec(nama_texture, rectangle_potongan, posisi_vector2, warna_filter)
+        DrawTextureRec(spriteMC, sourceRec, posisi, WHITE);
         
-        kecepatanY +=gravitasi;
-        posisi.y += kecepatanY;
-
-        if(posisi.y + radiusLingkaran >= posisiYTanah){
-            posisi.y=posisiYTanah-radiusLingkaran;
-            kecepatanY=0.0f;
-            lompat=false;
-        }
-        if(IsKeyDown(KEY_RIGHT)||IsKeyDown(KEY_D)) posisi.x += kecepatan;
-        if(IsKeyDown(KEY_LEFT)||IsKeyDown(KEY_A)) posisi.x -= kecepatan;
-        if(IsKeyPressed(KEY_SPACE)|| IsKeyPressed(KEY_W)&& !lompat){
-            kecepatanY = -12.0f;
-            lompat=true;
-        } 
-
+        // Tetap cetak nama di atas kepala karakter biar keren
+        DrawText(nama.c_str(), posisi.x + 10, posisi.y - 20, 16, GRAY);
     }
-    void Draw(){
-        float radiusSesuai = 45.0f;
-        DrawCircleV(posisi, radiusSesuai, BLUE);
-        DrawText(nama.c_str(), posisi.x - 22, posisi.y - 7, 20, WHITE);
-    }
-
 };
 
-int main()
-{
-    const int lebarL = 800;
-    const int tinggiL = 450;
-    InitWindow(lebarL,tinggiL, "raylib belajar lagi");
+int main() {
+    InitWindow(800, 450, "Raylib - Mengingat Animasi Class");
 
-    karakter mc("ardir", 400.0f, 225.0f, 15.0f);
+    // Pemanggilan di int main jadi rapi banget, Dit!
+    // Cukup tambahkan alamat path filemu di parameter terakhir
+    karakter mc("Adit", 350.0f, 150.0f, 4.0f, "resources/mc3_jalan.png");
 
     SetTargetFPS(60);
-    while(!WindowShouldClose()){
+
+    while (!WindowShouldClose()) {
+        // Update & Draw murni dikendalikan lewat class mc
         mc.updateInput();
+
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
-        mc.Draw();
+        mc.draw();
+
         EndDrawing();
     }
-    
+
     CloseWindow();
     return 0;
 }
