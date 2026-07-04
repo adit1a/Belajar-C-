@@ -84,7 +84,7 @@ int main() {
     InitWindow(lebarL, tinggiL, "Raylib - Logika Kamera 2D");
 
     float posisiYtanah = 350.0f;
-    karakter adit("Destroyer", 100.0f, posisiYtanah - 30.0f, 5.0f);
+    karakter adit("Mc", 100.0f, posisiYtanah - 30.0f, 5.0f);
 
     // Kita sebar 3 rintangan di koordinat yang lebih jauh (dunia luar)
     const int jumlah_rintangan = 3;
@@ -95,7 +95,7 @@ int main() {
     daftarRintangan[1].kotak = {800.0f, posisiYtanah - 90.0f, 60.0f, 90.0f};
     daftarRintangan[1].warna = GRAY;
     
-    daftarRintangan[2].kotak = {1300.0f, posisiYtanah - 140.0f, 60.0f, 140.0f};
+    daftarRintangan[2].kotak = {1300.0f, posisiYtanah - 160.0f, 60.0f, 160.0f};
     daftarRintangan[2].warna = LIGHTGRAY;
 
     // --- SETUP KAMERA 2D ---
