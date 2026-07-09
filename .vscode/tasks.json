@@ -1,0 +1,35 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "Compile Raylib 64-bit",
+            "command": "C:\\raylib\\w64devkit\\bin\\g++.exe",
+            "args": [
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "${file}",
+                "-O3",
+                "-std=c++17",
+                "-Wall",
+                "-I",
+                "D:\\ngoding\\c++\\Raylib\\src",
+                "-L",
+                "D:\\ngoding\\c++\\Raylib\\src",
+                "-lraylib",
+                "-lopengl32",
+                "-lgdi32",
+                "-lwinmm",
+                "-mwindows"
+            ],
+            "options": {
+                "cwd": "C:\\raylib\\w64devkit\\bin"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Compiler khusus Raylib 64-bit untuk VS Code"
+        }
+    ]
+}
