@@ -1,1 +1,17 @@
+# Tell GitHub Linguist to treat .cpp files as C++ and to ignore common build binaries
 *.cpp linguist-language=C++
+
+# Exclude compiled executables and common build artifacts from language statistics
+*.exe linguist-vendored=true
+*.dll linguist-vendored=true
+*.lib linguist-vendored=true
+*.a linguist-vendored=true
+*.o linguist-vendored=true
+
+# Exclude common build/resource folders (if you have them)
+resources/** linguist-vendored=true
+build/** linguist-vendored=true
+
+# If you keep third-party or vendor code, mark those directories as vendored too
+# third_party/** linguist-vendored=true
+# vendor/** linguist-vendored=true
