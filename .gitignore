@@ -1,0 +1,13 @@
+# Ignore build artifacts
+*.exe
+*.dll
+*.lib
+*.a
+*.o
+
+# Ignore IDE/editor folders
+.vscode/
+
+# Ignore build folders
+build/
+resources/
